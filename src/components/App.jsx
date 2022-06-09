@@ -1,16 +1,22 @@
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  counterSelector,
+  incremented,
+  decremented,
+} from 'store/slices/counterSlices';
+
 export const App = () => {
+  const count = useSelector(counterSelector.getCounter);
+  const dispatch = useDispatch();
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <center className="container">
+      <p className="counter">{count}</p>
+      <button className="btn" onClick={() => dispatch(decremented())}>
+        Increment
+      </button>
+      <button className="btn" onClick={() => dispatch(incremented())}>
+        Increment
+      </button>
+    </center>
   );
 };
